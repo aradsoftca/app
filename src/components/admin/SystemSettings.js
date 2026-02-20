@@ -487,7 +487,8 @@ const SystemSettings = () => {
           <h3 className="text-2xl font-bold text-white mb-2">Ad Configuration</h3>
           <p className="text-gray-400 text-sm mb-6">
             Desktop ad box is fully controlled here. Mobile ads (Android / iOS) are managed
-            via your AdMob and AppLovin MAX dashboards — update ad unit IDs in the app source code.
+            via your <strong style={{color:'#93c5fd'}}>AdMob dashboard</strong> (add mediation partners — AppLovin, Meta, etc. — directly
+            inside AdMob Mediation). Update ad unit IDs in the app source code.
           </p>
 
           {/* ── Desktop Ad Box ────────────────────────────────────────── */}
@@ -607,10 +608,19 @@ const SystemSettings = () => {
                   </ul>
                 </div>
                 <div className="bg-white bg-opacity-5 rounded-lg p-4">
+                  <p className="font-semibold text-white mb-1">Ad Counter Reset</p>
+                  <p className="text-gray-400">
+                    The ad gate counter (<em>1st free → 2nd rewarded → 3rd+ interstitial</em>) automatically
+                    resets to zero after <strong className="text-white">8 hours</strong> of inactivity.
+                    Each user gets a fresh session every 8 hours.
+                  </p>
+                </div>
+                <div className="bg-white bg-opacity-5 rounded-lg p-4">
                   <p className="font-semibold text-white mb-1">Ad Networks</p>
                   <p className="text-gray-400">
-                    <strong className="text-white">AppLovin MAX</strong> (primary) mediates both AppLovin and AdMob inventory.
-                    <strong className="text-white"> AdMob</strong> is used as a fallback when AppLovin is not available.
+                    <strong className="text-white">AdMob</strong> is the primary SDK.
+                    Add demand partners (AppLovin, Meta Audience Network, Unity Ads, etc.) through
+                    <strong className="text-white"> AdMob Mediation</strong> — no extra Flutter packages needed.
                     Configure ad unit IDs in <code className="text-blue-300">lib/core/services/ad_service.dart</code>.
                   </p>
                 </div>
@@ -621,9 +631,9 @@ const SystemSettings = () => {
                       className="px-3 py-1.5 bg-blue-700 hover:bg-blue-600 rounded text-white text-xs">
                       AdMob Dashboard
                     </a>
-                    <a href="https://dash.applovin.com" target="_blank" rel="noreferrer"
-                      className="px-3 py-1.5 bg-orange-700 hover:bg-orange-600 rounded text-white text-xs">
-                      AppLovin MAX Dashboard
+                    <a href="https://admob.google.com/home/mediation/" target="_blank" rel="noreferrer"
+                      className="px-3 py-1.5 bg-purple-700 hover:bg-purple-600 rounded text-white text-xs">
+                      AdMob Mediation Setup
                     </a>
                   </div>
                 </div>
