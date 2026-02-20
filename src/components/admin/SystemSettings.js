@@ -608,11 +608,14 @@ const SystemSettings = () => {
                   </ul>
                 </div>
                 <div className="bg-white bg-opacity-5 rounded-lg p-4">
-                  <p className="font-semibold text-white mb-1">Ad Counter Reset</p>
+                  <p className="font-semibold text-white mb-1">Ad Counter Reset &amp; Cooldowns</p>
                   <p className="text-gray-400">
                     The ad gate counter (<em>1st free → 2nd rewarded → 3rd+ interstitial</em>) automatically
-                    resets to zero after <strong className="text-white">8 hours</strong> of inactivity.
-                    Each user gets a fresh session every 8 hours.
+                    resets to zero after <strong className="text-white">8 hours</strong> — each user gets
+                    a fresh session every 8 hours.
+                    Additionally, the interstitial has a <strong className="text-white">30-minute cooldown</strong>:
+                    if a user connects more than once every 30 min (common when switching servers),
+                    the extra reconnects are free — no ad-bombing.
                   </p>
                 </div>
                 <div className="bg-white bg-opacity-5 rounded-lg p-4">
@@ -638,11 +641,22 @@ const SystemSettings = () => {
                   </div>
                 </div>
                 <div className="bg-yellow-900 bg-opacity-40 border border-yellow-600 rounded-lg p-4">
-                  <p className="text-yellow-200 text-sm">
-                    <strong>App Store / Play Store notes:</strong> iOS and Android app listings should
-                    include <em>"No ads for Premium subscribers"</em> in the app description to comply
-                    with store policies and set user expectations before purchase.
-                  </p>
+                  <p className="text-yellow-200 text-sm font-semibold mb-1">⚠ Required one-time setup in AdMob dashboard</p>
+                  <ul className="text-yellow-200 text-sm space-y-1 list-disc list-inside">
+                    <li>
+                      <strong>iOS ATT prompt</strong>: Go to AdMob → Privacy &amp; Messaging → iOS App
+                      Tracking Transparency and create a message. Without this, iOS serves
+                      non-personalized ads only (lower CPM).
+                    </li>
+                    <li>
+                      <strong>GDPR consent form</strong>: Go to AdMob → Privacy &amp; Messaging → GDPR
+                      and create a consent message for EEA/UK users.
+                    </li>
+                    <li>
+                      <strong>App Store / Play Store</strong>: Include <em>"No ads for Premium subscribers"</em> in
+                      the app description to comply with store policies.
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
