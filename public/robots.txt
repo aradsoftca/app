@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /subscribe
+Disallow: /payment-success
+Disallow: /payment-cancel
+Disallow: /auth/
+Disallow: /api/
+Disallow: /email-preferences
+Disallow: /unsubscribe
+Disallow: /verify
+Disallow: /reset-password
+
+Sitemap: https://vpn-xo.com/sitemap.xml

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkvpn_xo_website=self.webpackChunkvpn_xo_website||[]).push([[784],{3784:(t,e,a)=>{a.d(e,{sJE:()=>s});var i=a(6688);function s(t){return(0,i.k5)({tag:"svg",attr:{role:"img",viewBox:"0 0 24 24"},child:[{tag:"title",attr:{},child:[]},{tag:"path",attr:{d:"M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"}}]})(t)}}}]);
+//# sourceMappingURL=784.8b4e6a37.chunk.js.map

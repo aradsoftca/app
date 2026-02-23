@@ -1,0 +1,8 @@
+node_modules
+
+# Environment files — may contain API keys (even public REACT_APP_ ones should not be committed)
+.env
+.env.local
+.env.production
+.env.development
+.env*.local

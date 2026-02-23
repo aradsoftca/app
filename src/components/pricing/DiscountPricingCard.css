@@ -1,0 +1,397 @@
+/* Regular Pricing Card */
+.pricing-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card.featured {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f7faff 0%, #ffffff 100%);
+}
+
+/* Discount Mode Transformation */
+.pricing-card.discount-mode {
+  border-color: var(--campaign-color);
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, #ffffff 100%);
+  animation: discountPulse 2s ease-in-out infinite;
+}
+
+@keyframes discountPulse {
+  0%, 100% {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  }
+  50% {
+    box-shadow: 0 8px 16px rgba(255, 107, 107, 0.2);
+  }
+}
+
+/* Discount Ribbon */
+.discount-ribbon {
+  position: absolute;
+  top: 20px;
+  right: -35px;
+  background: #ff6b6b;
+  color: white;
+  padding: 8px 40px;
+  font-weight: 700;
+  font-size: 14px;
+  transform: rotate(45deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Featured Badge */
+.featured-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Plan Header */
+.plan-header {
+  margin-bottom: 24px;
+}
+
+.plan-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.plan-description {
+  color: #718096;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Pricing Section */
+.plan-pricing {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Regular Price */
+.regular-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.regular-price .currency {
+  font-size: 24px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-right: 4px;
+}
+
+.regular-price .amount {
+  font-size: 48px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.regular-price .period {
+  font-size: 16px;
+  color: #718096;
+  margin-left: 4px;
+}
+
+/* Original Price (Strikethrough) */
+.original-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 8px;
+  opacity: 0.6;
+  position: relative;
+}
+
+.original-price::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 2px;
+  background: #e53e3e;
+  animation: strikethrough 0.5s ease-out;
+}
+
+@keyframes strikethrough {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.original-price .currency {
+  font-size: 18px;
+  font-weight: 600;
+  color: #718096;
+  margin-right: 4px;
+}
+
+.original-price .amount {
+  font-size: 32px;
+  font-weight: 600;
+  color: #718096;
+  text-decoration: line-through;
+}
+
+.original-price .period {
+  font-size: 14px;
+  color: #a0aec0;
+  margin-left: 4px;
+}
+
+/* Discounted Price */
+.discounted-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 12px;
+  animation: priceReveal 0.6s ease-out;
+}
+
+@keyframes priceReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.discounted-price .currency {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e53e3e;
+  margin-right: 4px;
+}
+
+.discounted-price .amount {
+  font-size: 56px;
+  font-weight: 800;
+  color: #e53e3e;
+  text-shadow: 0 2px 4px rgba(229, 62, 62, 0.2);
+}
+
+.discounted-price .period {
+  font-size: 18px;
+  color: #e53e3e;
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+/* Savings Badge */
+.savings-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  animation: savingsBounce 0.8s ease-out;
+}
+
+@keyframes savingsBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Campaign Banner */
+.campaign-banner {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+  border: 2px dashed var(--campaign-color);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d3748;
+  animation: bannerPulse 2s ease-in-out infinite;
+}
+
+@keyframes bannerPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Features List */
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.check-icon {
+  width: 20px;
+  height: 20px;
+  color: #48bb78;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.pricing-card.discount-mode .check-icon {
+  color: var(--campaign-color);
+}
+
+/* Select Plan Button */
+.select-plan-btn {
+  width: 100%;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.select-plan-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.select-plan-btn.discount-btn {
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+  }
+}
+
+/* Limited Time Notice */
+.limited-time {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #e53e3e;
+  font-weight: 600;
+  animation: urgencyBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes urgencyBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pricing-card {
+    padding: 24px;
+  }
+
+  .plan-name {
+    font-size: 20px;
+  }
+
+  .regular-price .amount,
+  .discounted-price .amount {
+    font-size: 40px;
+  }
+
+  .original-price .amount {
+    font-size: 28px;
+  }
+}
+
+/* Special Effects for Black Friday / Cyber Monday */
+.pricing-card.discount-mode.black-friday {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, #ffffff 100%);
+}
+
+.pricing-card.discount-mode.cyber-monday {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.05) 0%, #ffffff 100%);
+}
+
+.pricing-card.discount-mode.new-year {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, #ffffff 100%);
+}
+
+/* Confetti Effect (Optional) */
+@keyframes confetti {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.pricing-card.discount-mode::before {
+  content: '🎉';
+  position: absolute;
+  top: -20px;
+  left: 20%;
+  font-size: 24px;
+  animation: confetti 3s ease-in-out infinite;
+}
+
+.pricing-card.discount-mode::after {
+  content: '🎊';
+  position: absolute;
+  top: -20px;
+  right: 20%;
+  font-size: 24px;
+  animation: confetti 3s ease-in-out infinite 0.5s;
+}

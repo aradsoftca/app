@@ -76,7 +76,7 @@ const VPNXOHomeRedesigned = () => {
     {
       icon: <FaNetworkWired className="text-3xl" />,
       title: 'Multi-Protocol Support',
-      desc: 'Choose between 6 VPN protocols optimized for speed, security, or censorship bypass.',
+      desc: 'Choose between 8 VPN protocols optimized for speed, security, or censorship bypass.',
     },
     {
       icon: <FaGlobe className="text-3xl" />,
@@ -125,7 +125,7 @@ const VPNXOHomeRedesigned = () => {
     <div className="min-h-screen bg-cyber-dark text-white font-sans selection:bg-cyber-green selection:text-cyber-dark overflow-x-hidden">
       <SEO
         title="VPN XO — Secure, Fast & Private VPN Service"
-        description="VPN XO offers military-grade encryption with WireGuard, Shadowsocks, V2Ray, Trojan & VLESS protocols. Browse privately, bypass censorship, and protect your data. Free plan available."
+        description="VPN XO offers military-grade encryption with 8 protocols: WireGuard, Hysteria2, TUIC v5, ShadowTLS, VLESS, Trojan, Shadowsocks & VMess. Browse privately, bypass censorship, and protect your data. Free plan available."
         path="/"
       />
       {/* Background Grid */}

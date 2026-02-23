@@ -55,7 +55,7 @@ const SystemSettings = () => {
       const response = await apiService.getSystemSettings();
       // Convert array of {key, value} to object
       const settingsMap = {};
-      response.data.forEach(item => {
+      (Array.isArray(response.data) ? response.data : []).forEach(item => {
         // Parse booleans and numbers
         if (item.value === 'true') settingsMap[item.key] = true;
         else if (item.value === 'false') settingsMap[item.key] = false;
