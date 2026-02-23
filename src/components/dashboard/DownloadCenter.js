@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaWindows, FaApple, FaAndroid, FaLinux, FaDownload, FaGlobe, FaCopy, FaFileDownload } from 'react-icons/fa';
+import { FaWindows, FaApple, FaAndroid, FaDownload, FaGlobe, FaCopy, FaFileDownload } from 'react-icons/fa';
 import Card from '../common/Card';
 import Button from '../common/Button';
 import { apiService } from '../../services/api';
@@ -100,15 +100,7 @@ const DownloadCenter = () => {
       available: true,
       external: true,
     },
-    {
-      name: 'Linux',
-      icon: FaLinux,
-      color: 'from-yellow-600 to-yellow-800',
-      version: '1.0.0',
-      downloadUrl: '/downloads/VPN-XO-linux.tar.gz',
-      description: 'Ubuntu 20.04+ / Debian 11+',
-      available: true,
-    },
+
   ];
 
   const handleDownload = (platform) => {

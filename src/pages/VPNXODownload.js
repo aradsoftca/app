@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaWindows, FaApple, FaAndroid, FaLinux, FaDownload, FaChrome } from 'react-icons/fa';
+import { FaWindows, FaApple, FaAndroid, FaDownload, FaChrome } from 'react-icons/fa';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import SEO from '../components/SEO';
 import api from '../services/api';
@@ -9,7 +9,6 @@ import api from '../services/api';
 const DEFAULT_DOWNLOAD_URLS = {
   windows: '/downloads/VPN-XO-Setup.exe',
   macos: '/downloads/VPN-XO.dmg',
-  linux: '/downloads/VPN-XO-linux.tar.gz',
   android: 'https://play.google.com/store/apps/details?id=com.vpnxo.app',
   ios: 'https://apps.apple.com/app/vpn-xo',
   chrome: 'https://chromewebstore.google.com',
@@ -28,8 +27,8 @@ const VPNXODownload = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
       <SEO
-        title="Download VPN XO — Windows, Android, Chrome & Linux"
-        description="Download VPN XO for Windows, Android, Chrome extension, and Linux. One-click install, instant connection to secure VPN servers worldwide."
+        title="Download VPN XO — Windows, macOS, Android, iOS & Chrome"
+        description="Download VPN XO for Windows, macOS, Android, iOS, and the Chrome extension. One-click install, instant connection to secure VPN servers worldwide."
         path="/download"
       />
       <nav className="bg-black/30 backdrop-blur-md border-b border-white/10">
@@ -50,7 +49,7 @@ const VPNXODownload = () => {
         <div className="text-center mb-12">
           <FaDownload className="text-blue-400 text-6xl mx-auto mb-4" />
           <h1 className="text-5xl font-bold text-white mb-4">Download VPN XO</h1>
-          <p className="text-xl text-gray-300">Available for all your devices — Android, iOS, Windows, macOS, Linux &amp; Chrome</p>
+          <p className="text-xl text-gray-300">Available for all your devices — Android, iOS, Windows, macOS &amp; Chrome</p>
         </div>
 
         {/* Download Cards */}
@@ -133,20 +132,6 @@ const VPNXODownload = () => {
             <p className="text-gray-400 text-sm mt-2">Chrome Web Store</p>
           </div>
 
-          {/* Linux */}
-          <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 text-center">
-            <FaLinux className="text-orange-300 text-6xl mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-2">Linux</h3>
-            <p className="text-gray-300 mb-6">Ubuntu 20.04+ / Debian 11+</p>
-            <a
-              href={downloadUrls.linux}
-              download
-              className="block w-full bg-orange-700 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition text-center"
-            >
-              <FaDownload className="inline mr-2" /> Download
-            </a>
-            <p className="text-gray-400 text-sm mt-2">Version 1.0.0 &bull; tar.gz</p>
-          </div>
         </div>
 
         {/* Installation Instructions */}
@@ -207,19 +192,6 @@ const VPNXODownload = () => {
               </ol>
             </div>
 
-            {/* Linux */}
-            <div>
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center">
-                <FaLinux className="mr-2 text-orange-300" />
-                Linux
-              </h3>
-              <ol className="list-decimal list-inside space-y-2 text-gray-300 ml-4">
-                <li>Download the tar.gz archive</li>
-                <li>Extract: <code className="bg-gray-800 px-1 rounded">tar -xzf VPN-XO-linux.tar.gz</code></li>
-                <li>Run: <code className="bg-gray-800 px-1 rounded">./vpnxo</code></li>
-                <li>Log in with your account</li>
-              </ol>
-            </div>
           </div>
         </div>
 
@@ -239,13 +211,6 @@ const VPNXODownload = () => {
               <h3 className="text-xl font-bold text-white mb-3">macOS</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>• macOS 12 Monterey or later</li>
-                <li>• 80 MB free disk space</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-3">Linux</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Ubuntu 20.04+ / Debian 11+</li>
                 <li>• 80 MB free disk space</li>
               </ul>
             </div>

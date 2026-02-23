@@ -8,7 +8,6 @@ import {
   FaWindows,
   FaAndroid,
   FaApple,
-  FaLinux,
   FaCheck,
   FaServer,
   FaLock,
@@ -106,7 +105,7 @@ const VPNXOHomeRedesigned = () => {
     },
     {
       q: 'What platforms are supported?',
-      a: 'VPN XO is available on Android, iOS, Windows, macOS, and Linux as a native app — plus a Chrome browser extension for instant browser-level protection. All platforms are live and ready to download.',
+      a: 'VPN XO is available on Android, iOS, Windows, and macOS as a native app — plus a Chrome browser extension for instant browser-level protection. All platforms are live and ready to download.',
     },
     {
       q: 'What is your refund policy?',
@@ -422,7 +421,7 @@ const VPNXOHomeRedesigned = () => {
             <h2 className="text-4xl font-bold mb-4 text-white">DOWNLOAD <span className="text-cyber-green">VPN XO</span></h2>
             <p className="text-gray-400">Available on your favorite platforms</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-4xl mx-auto">
             <Link to="/download" className="bg-cyber-card border border-cyber-green/20 p-6 rounded-xl text-center hover:border-cyber-green/60 transition-all group">
               <FaWindows className="text-4xl mx-auto mb-3 text-blue-400 group-hover:text-blue-300" />
               <p className="text-sm text-gray-400 font-bold">Windows</p>
@@ -441,11 +440,6 @@ const VPNXOHomeRedesigned = () => {
             <Link to="/download" className="bg-cyber-card border border-cyber-green/20 p-6 rounded-xl text-center hover:border-cyber-green/60 transition-all group">
               <FaApple className="text-4xl mx-auto mb-3 text-purple-400 group-hover:text-purple-300" />
               <p className="text-sm text-gray-400 font-bold">iOS</p>
-              <p className="text-xs text-cyber-green mt-1">Available</p>
-            </Link>
-            <Link to="/download" className="bg-cyber-card border border-cyber-green/20 p-6 rounded-xl text-center hover:border-cyber-green/60 transition-all group">
-              <FaLinux className="text-4xl mx-auto mb-3 text-orange-300 group-hover:text-orange-200" />
-              <p className="text-sm text-gray-400 font-bold">Linux</p>
               <p className="text-xs text-cyber-green mt-1">Available</p>
             </Link>
             <Link to="/download" className="bg-cyber-card border border-cyber-green/20 p-6 rounded-xl text-center hover:border-cyber-green/60 transition-all group">
@@ -539,7 +533,6 @@ const VPNXOHomeRedesigned = () => {
               <FaWindows className="text-gray-500 hover:text-white cursor-pointer transition-colors" />
               <FaAndroid className="text-gray-500 hover:text-white cursor-pointer transition-colors" />
               <FaApple className="text-gray-500 hover:text-white cursor-pointer transition-colors" />
-              <FaLinux className="text-gray-500 hover:text-white cursor-pointer transition-colors" />
             </div>
           </div>
         </div>
