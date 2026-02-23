@@ -16,7 +16,7 @@ const FAQ = () => {
     },
     {
       question: 'Can I use VPN XO on multiple devices?',
-      answer: 'Yes! All our plans support up to 5 simultaneous device connections. You can use VPN XO on Windows, Mac, Linux, iOS, Android, and more. One subscription covers all your devices.'
+      answer: 'Yes! The free tier supports 1 device. Premium plans support up to 3 simultaneous devices. VPN XO is available natively on Windows, macOS, Android, and iOS, plus a Chrome browser extension.'
     },
     {
       question: 'Will VPN XO slow down my internet speed?',
@@ -24,7 +24,7 @@ const FAQ = () => {
     },
     {
       question: 'What is your refund policy?',
-      answer: 'We offer a 30-day money-back guarantee on all paid plans. If you\'re not satisfied with VPN XO for any reason, simply contact our support team within 30 days of purchase for a full refund, no questions asked.'
+      answer: 'All sales are final. You can cancel your subscription at any time to prevent future charges — cancellation takes effect at the end of your current billing period. No partial refunds are issued.'
     },
     {
       question: 'Can I use VPN XO for streaming?',
@@ -36,7 +36,7 @@ const FAQ = () => {
     },
     {
       question: 'What protocols does VPN XO support?',
-      answer: 'VPN XO supports multiple protocols including Shadowsocks, V2Ray, Trojan, and Hysteria. Each protocol is optimized for different use cases - some for speed, others for security or bypassing restrictions. You can choose the best protocol for your needs.'
+      answer: 'VPN XO supports 8 protocols: WireGuard, Hysteria2, TUIC v5, ShadowTLS, VLESS (Xray), Trojan, Shadowsocks, and VMess (V2Ray). Each is optimized for a different use case — speed, censorship bypass, or stealth. You can switch protocols in Settings at any time.'
     },
     {
       question: 'Do you keep any logs?',
@@ -44,7 +44,7 @@ const FAQ = () => {
     },
     {
       question: 'How do I get started with VPN XO?',
-      answer: 'Getting started is easy! Simply choose a plan, create an account, download our app for your device, and connect to any server. The entire process takes less than 5 minutes. We also offer a free trial so you can test our service risk-free.'
+      answer: 'Getting started is easy! Create a free account, download our app for your device, and tap Connect. The entire setup takes less than 2 minutes. Our free tier is permanent — no credit card required, no time limit.'
     },
     {
       question: 'What payment methods do you accept?',

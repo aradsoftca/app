@@ -12,7 +12,7 @@ const ComparisonTable = () => {
     { name: 'AES-256 Encryption', free: true, premium: true },
     { name: 'No-Logs Policy', free: true, premium: true },
     { name: 'Multiple Protocols', free: 'Limited', premium: true },
-    { name: 'Simultaneous Connections', free: '1 Device', premium: '5 Devices' },
+    { name: 'Simultaneous Connections', free: '1 Device', premium: '3 Devices' },
     { name: 'Connection Speed', free: 'Standard', premium: 'Ultra Fast' },
     { name: 'Priority Support', free: false, premium: true },
     { name: 'Ad Blocker', free: false, premium: true },
@@ -140,10 +140,10 @@ const ComparisonTable = () => {
           className="mt-12 text-center"
         >
           <p className="text-gray-600 mb-4">
-            ✨ All premium plans include a 30-day money-back guarantee
+            ✨ Upgrade anytime — cancel anytime, no lock-in
           </p>
           <p className="text-sm text-gray-500">
-            No credit card required for free trial • Cancel anytime • Instant activation
+            No credit card required for free account • Cancel anytime • Instant activation
           </p>
           <p className="text-xs text-gray-400 mt-3">
             ¹ Split Tunneling is available on Windows and Android only. Not supported on iOS or macOS due to OS-level restrictions.

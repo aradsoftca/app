@@ -366,7 +366,7 @@ const VPNXOHomeRedesigned = () => {
               <div className="text-5xl font-bold text-white mb-1">$6.99</div>
               <div className="text-gray-500 text-sm mb-6">per month</div>
               <ul className="space-y-4 mb-8 text-gray-300 text-sm">
-                <li className="flex items-center gap-3"><FaCheck className="text-cyber-cyan flex-shrink-0" /> 5 Simultaneous Devices</li>
+                <li className="flex items-center gap-3"><FaCheck className="text-cyber-cyan flex-shrink-0" /> 3 Simultaneous Devices</li>
                 <li className="flex items-center gap-3"><FaCheck className="text-cyber-cyan flex-shrink-0" /> Priority Server Access</li>
                 <li className="flex items-center gap-3"><FaCheck className="text-cyber-cyan flex-shrink-0" /> Never Disconnected</li>
                 <li className="flex items-center gap-3"><FaCheck className="text-cyber-cyan flex-shrink-0" /> 24/7 Priority Support</li>
