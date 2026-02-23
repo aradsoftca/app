@@ -101,7 +101,7 @@ const VPNXOHomeRedesigned = () => {
     },
     {
       q: 'Can I use VPN XO for free?',
-      a: 'Yes! Our free tier gives you access to all servers and all 8 protocols with 1 device. Premium unlocks split tunneling, removes ads, and increases your device limit to 3.',
+      a: 'Yes! Our free tier gives you access to all servers and all 8 protocols with 1 device. Premium unlocks split tunneling (Windows & Android), removes ads, and increases your device limit to 3. Note: split tunneling is not available on iOS or macOS due to OS-level restrictions.',
     },
     {
       q: 'What platforms are supported?',
