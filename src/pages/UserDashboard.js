@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaSignOutAlt,
@@ -41,11 +41,17 @@ import ConfirmDialog from '../components/common/ConfirmDialog';
 const UserDashboard = () => {
   useDocumentTitle('Dashboard');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { user, logout } = useAuth();
   const { darkMode, toggleTheme } = useTheme();
   const { confirm, dialogProps } = useConfirm();
   const tabListRef = useRef(null);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState(() => {
+    // Allow deep-linking to a specific tab via ?tab=support etc.
+    const tabParam = searchParams.get('tab');
+    const validTabs = ['overview', 'downloads', 'devices', 'billing', 'support', 'referrals', 'settings'];
+    return validTabs.includes(tabParam) ? tabParam : 'overview';
+  });
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedTicket, setSelectedTicket] = useState(null);
