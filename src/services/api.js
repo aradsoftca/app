@@ -111,7 +111,7 @@ api.interceptors.response.use(
 export const apiService = {
   // Auth
   login: (email, password) => api.post('/api/auth/login', { email, password }),
-  register: (email, password) => api.post('/api/auth/register', { email, password }),
+  register: (email, password, extra = {}) => api.post('/api/auth/register', { email, password, ...extra }),
   // SEC-TOKEN-01: No refreshToken in body — backend reads it from HttpOnly cookie.
   // Sending no specific token triggers full-logout (all sessions) on the backend.
   logout: () => api.post('/api/auth/logout', {}),
@@ -217,6 +217,15 @@ export const apiService = {
   getPublicConfig: () => api.get('/api/config'), // Public endpoint for app startup
   getSystemSettings: () => api.get('/api/admin/settings'), // Admin only
   updateSystemSetting: (key, value) => api.put('/api/admin/settings', { key, value }),
+
+  // Downloads Management (Admin)
+  getAdminDownloads: () => api.get('/api/admin/downloads'),
+  updateDownloadPlatform: (platform, data) => api.put(`/api/admin/downloads/${platform}`, data),
+  deleteDownloadFile: (platform) => api.delete(`/api/admin/downloads/${platform}/file`),
+  uploadDownloadFile: (platform, formData) => api.post(`/api/admin/downloads/${platform}/upload`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    timeout: 600000, // 10 min for large binaries
+  }),
 
   // Email Templates (Admin)
   getEmailTemplates: () => api.get('/api/admin/email-templates'),
@@ -357,6 +366,25 @@ export const apiService = {
   getQoSConfig: () => api.get('/api/admin/platform/qos/config'),
   updateQoSConfig: (tier, config) => api.put(`/api/admin/platform/qos/config/${tier}`, config),
 
+  // Admin: Speed Limit Management
+  getSpeedLimitSettings: () => api.get('/api/admin/speed-limits/settings'),
+  updateSpeedLimitSettings: (settings) => api.put('/api/admin/speed-limits/settings', settings),
+  getSpeedLimitStatus: () => api.get('/api/admin/speed-limits/status'),
+  getSpeedLimitServerStatus: (serverId) => api.get(`/api/admin/speed-limits/status/${serverId}`),
+  setupSpeedLimit: (serverId) => api.post(`/api/admin/speed-limits/setup/${serverId}`),
+  resetSpeedLimit: (serverId) => api.post(`/api/admin/speed-limits/reset/${serverId}`),
+  pushSpeedLimitRates: () => api.post('/api/admin/speed-limits/update-rates'),
+  testSpeedLimit: (serverId) => api.post(`/api/admin/speed-limits/test/${serverId}`),
+
+  // Admin: Data Usage / Data Cap Management
+  getDataCapSettings: () => api.get('/api/data-usage/admin/settings'),
+  updateDataCapSettings: (settings) => api.put('/api/data-usage/admin/settings', settings),
+  getDataUsageOverview: () => api.get('/api/data-usage/admin/overview'),
+  lookupDataUsage: (identifier, type = 'device') => api.get(`/api/data-usage/admin/lookup/${identifier}?type=${type}`),
+  resetDeviceDataUsage: (deviceId) => api.post(`/api/data-usage/admin/reset-device/${deviceId}`),
+  resetAllDataUsage: () => api.post('/api/data-usage/admin/reset-all'),
+  cleanupOldDataUsage: () => api.post('/api/data-usage/admin/cleanup'),
+
   // Admin: GDPR/Privacy (platform)
   getGdprExportRequests: () => api.get('/api/admin/platform/gdpr/export-requests'),
   getConsentAnalytics: () => api.get('/api/admin/platform/gdpr/consent-analytics'),
@@ -364,8 +392,10 @@ export const apiService = {
   // Admin: Revenue Forecasting
   getRevenuePredictions: () => api.get('/api/admin/advanced/analytics/predictions'),
 
-  // Admin: VPS Metrics
+  // Admin: VPS Metrics (GCP host)
   getVPSMetrics: () => api.get('/api/admin/vps/metrics'),
+  // Admin: VPN server health-agent metrics (France, Canada, …)
+  getVPNServerMetrics: () => api.get('/api/admin/vpn-servers/metrics'),
 
   // Admin: Revenue Analytics
   getRevenue: () => api.get('/api/admin/revenue'),

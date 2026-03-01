@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaMicrochip, FaMemory, FaHdd, FaClock, FaPlug, FaSync } from 'react-icons/fa';
+import { FaMicrochip, FaMemory, FaHdd, FaClock, FaPlug, FaSync, FaGlobe, FaServer } from 'react-icons/fa';
 import Card from '../common/Card';
 import { apiService } from '../../services/api';
 
@@ -42,14 +42,17 @@ const VPSMetrics = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [autoRefresh, setAutoRefresh] = useState(false);
+  const [vpnServers, setVpnServers] = useState([]);
+  const [vpnLoading, setVpnLoading] = useState(true);
 
   useEffect(() => {
     loadMetrics();
+    loadVPNMetrics();
   }, []);
 
   useEffect(() => {
     if (!autoRefresh) return;
-    const interval = setInterval(loadMetrics, 10000);
+    const interval = setInterval(() => { loadMetrics(); loadVPNMetrics(); }, 10000);
     return () => clearInterval(interval);
   }, [autoRefresh]);
 
@@ -63,6 +66,17 @@ const VPSMetrics = () => {
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadVPNMetrics = async () => {
+    try {
+      const res = await apiService.getVPNServerMetrics();
+      setVpnServers(res.data?.servers || []);
+    } catch (err) {
+      console.error('VPN server metrics:', err);
+    } finally {
+      setVpnLoading(false);
     }
   };
 
@@ -176,6 +190,101 @@ const VPSMetrics = () => {
           ))}
         </div>
       </Card>
+
+      {/* ── VPN Servers ── */}
+      <div className="pt-4">
+        <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+          <FaGlobe className="text-indigo-400" /> VPN Servers
+        </h2>
+        {vpnLoading ? (
+          <div className="text-center text-gray-400 py-8">Loading VPN server metrics…</div>
+        ) : vpnServers.length === 0 ? (
+          <div className="text-center text-gray-500 py-8">No active VPN servers found</div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {vpnServers.map((srv) => (
+              <Card key={srv.id} className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-indigo-500/20">
+                      <FaServer className="text-indigo-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold">{srv.name}</h3>
+                      <p className="text-gray-400 text-xs">{srv.location} · {srv.ip_address}</p>
+                    </div>
+                  </div>
+                  <span className={`px-2 py-1 rounded text-xs font-bold ${
+                    srv.online ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-400'
+                  }`}>
+                    {srv.online ? 'Online' : 'Offline'}
+                  </span>
+                </div>
+
+                {srv.online && srv.health ? (
+                  <>
+                    {/* Quick stats */}
+                    <div className="grid grid-cols-4 gap-3 mb-4 text-center">
+                      <div>
+                        <p className="text-blue-400 font-bold text-lg">{srv.health.system?.load_1m?.toFixed(2) ?? '—'}</p>
+                        <p className="text-gray-500 text-xs">Load 1m</p>
+                      </div>
+                      <div>
+                        <p className="text-purple-400 font-bold text-lg">{srv.health.system?.memory_used_pct ?? '—'}%</p>
+                        <p className="text-gray-500 text-xs">Memory</p>
+                      </div>
+                      <div>
+                        <p className="text-yellow-400 font-bold text-lg">{srv.health.system?.disk_used_pct ?? '—'}%</p>
+                        <p className="text-gray-500 text-xs">Disk</p>
+                      </div>
+                      <div>
+                        <p className="text-green-400 font-bold text-lg">{formatUptime(srv.health.system?.uptime_seconds)}</p>
+                        <p className="text-gray-500 text-xs">Uptime</p>
+                      </div>
+                    </div>
+
+                    {/* Gauge bars */}
+                    <div className="space-y-2 mb-4">
+                      <GaugeBar
+                        value={Math.min((srv.health.system?.load_1m || 0) / (srv.health.system?.cpus || 1) * 100, 100)}
+                        max={100} color="bg-blue-500"
+                        label={`CPU load (${srv.health.system?.cpus ?? '?'} cores)`}
+                      />
+                      <GaugeBar value={srv.health.system?.memory_used_pct || 0} max={100} color="bg-purple-500" label="Memory" />
+                      <GaugeBar value={Math.max(0, srv.health.system?.disk_used_pct || 0)} max={100} color="bg-yellow-500" label="Disk" />
+                    </div>
+
+                    {/* Services */}
+                    {srv.health.services && (
+                      <div>
+                        <p className="text-gray-400 text-xs uppercase tracking-wide mb-2">Services</p>
+                        <div className="flex flex-wrap gap-2">
+                          {Object.entries(srv.health.services).map(([proto, svcInfo]) => (
+                            <div key={proto} className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs border ${
+                              svcInfo.active
+                                ? 'bg-green-500/10 border-green-500/30 text-green-300'
+                                : 'bg-gray-700 border-gray-600 text-gray-500'
+                            }`}>
+                              <div className={`w-1.5 h-1.5 rounded-full ${
+                                svcInfo.active ? 'bg-green-400' : 'bg-gray-500'
+                              }`} />
+                              {proto}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-gray-500 text-sm py-4 text-center">
+                    {srv.error || 'Could not reach health agent'}
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -20,7 +20,7 @@ const LoadBalancer = () => {
     try {
       setLoading(true);
       const res = await apiService.getLoadDistribution();
-      setDistribution(res.data?.servers || res.data || []);
+      setDistribution(res.data?.distribution || []);
     } catch (err) {
       console.error('Failed to load distribution:', err);
     } finally {
@@ -77,24 +77,24 @@ const LoadBalancer = () => {
               </thead>
               <tbody>
                 {distribution.map((s) => {
-                  const loadPct = s.load_percent || s.current_load || 0;
+                  const loadPct = s.capacityPercent || 0;
                   return (
                     <tr key={s.id || s.server_id} className="border-b border-gray-700 hover:bg-white/5">
                       <td className="py-3 px-2 text-white flex items-center gap-2">
                         <FaServer className="text-gray-400" />
-                        {s.name || s.server_name || s.server_id}
+                        {s.name || s.location || s.id}
                       </td>
                       <td className="py-3 px-2">
                         <span className={`px-2 py-1 rounded text-xs font-bold ${
-                          s.status === 'online' ? 'bg-green-500/20 text-green-300' :
-                          s.status === 'maintenance' ? 'bg-yellow-500/20 text-yellow-300' :
+                          s.healthStatus === 'healthy' ? 'bg-green-500/20 text-green-300' :
+                          s.healthStatus === 'degraded' ? 'bg-yellow-500/20 text-yellow-300' :
                           'bg-red-500/20 text-red-300'
                         }`}>
-                          {s.status || '—'}
+                          {s.healthStatus || 'unknown'}
                         </span>
                       </td>
                       <td className="py-3 px-2 text-gray-300">
-                        {s.active_connections || 0} / {s.max_connections || s.capacity || '∞'}
+                        {s.activeConnections || 0} / {s.capacity || '∞'}
                       </td>
                       <td className="py-3 px-2">
                         <div className="flex items-center gap-2">
@@ -127,14 +127,14 @@ const LoadBalancer = () => {
                               className="text-xs text-gray-400 hover:text-gray-300">✕</button>
                           </div>
                         ) : (
-                          <span className="text-gray-300">{s.weight || 1.0}</span>
+                          <span className="text-gray-300">{(s.routingWeight ?? 1.0).toFixed(1)}</span>
                         )}
                       </td>
                       <td className="py-3 px-2">
                         <button
                           onClick={() => {
                             setEditingWeight(s.id || s.server_id);
-                            setWeightValue(String(s.weight || 1.0));
+                            setWeightValue(String(s.routingWeight ?? 1.0));
                           }}
                           className="text-xs text-blue-400 hover:text-blue-300"
                         >
